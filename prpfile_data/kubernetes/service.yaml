@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: prpfile_data
+  labels:
+    app: prpfile_data
+  name: prpfile_data
+spec:
+  ports:
+  
+    - protocol: TCP
+      port: 8086
+      targetPort: 8086
+   
+   
+  selector:
+    app: prpfile_data
+  type: ClusterIP
