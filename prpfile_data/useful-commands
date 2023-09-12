@@ -1,0 +1,39 @@
+
+
+
+    
+# Curl commands for REST Server resource Profile
+# Post
+curl -X POST -H "Content-Type: application/json" \
+-d '{"Age": 1,"Address": "sample string","Name": "sample string"}' \
+http://localhost:8086/v1/profiles
+
+# Get
+curl -X GET -H "Content-Type: application/json" \
+http://localhost:8086/v1/profiles
+
+# Put
+curl -X PUT -H "Content-Type: application/json" \
+-d '{"Id": 123,"Address": "sample string","Name": "sample string","Age": 1}' \
+http://localhost:8086/v1/profiles/123
+
+# Put
+### wrong id passed in param
+curl -X PUT -H "Content-Type: application/json" \
+-d '{"Id": 123,"Address": "sample string","Name": "sample string","Age": 1}' \
+http://localhost:8086/v1/profiles/1234
+
+# Get  (retrieve specific Profile)
+curl -X GET -H "Content-Type: application/json" \
+http://localhost:8086/v1/profiles/123
+
+# Delete
+curl -X DELETE -H "Content-Type: application/json" \
+http://localhost:8086/v1/profiles/123
+
+    
+
+# when mysql throws error about server connection, fire below commands
+# CREATE USER 'root'@'%' IDENTIFIED BY 'password';
+# GRANT ALL PRIVILEGES ON *.* TO 'root'@'%';
+

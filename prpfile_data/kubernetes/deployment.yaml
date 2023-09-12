@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: prpfile_data
+  name: prpfile_data
+  labels:
+    app: prpfile_data
+spec:
+  selector:
+    matchLabels:
+      app: prpfile_data
+  template:
+    metadata:
+      labels:
+        app: prpfile_data
+        name: prpfile_data
+    spec:
+      containers:
+        - name: prpfile_data
+          image: shubha-intelops/test1/prpfile_data
+          imagePullPolicy: Always
+        
+          env:
+            - name: SERVICE_NAME
+              value: "go-app"
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "localhost:4317"
+            - name: INSECURE_MODE
+              value: "true"
+        
+          ports:
+        
+        
+          - containerPort: 8086
+            name: http
+        
+        
+          readinessProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 15
+          livenessProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 30
+        
